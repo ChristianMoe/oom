@@ -1,12 +1,12 @@
 ﻿/// <summary>
-/// Christian Mödlhammer - Task 2 OOM
+/// Christian Mödlhammer - Task 3 OOM - Erweiterung von Task2
 /// </summary>
 
 using System;
 
 namespace Task2
 {	
-	public class Termin
+	public class Termin : IAllData
 	{
 		private int m_tag; /// private fields
 		private int m_monat;
@@ -15,7 +15,14 @@ namespace Task2
 		private string m_thema;
 		private string m_ort;
 
-		public string Ort  /// property
+        private int m_zugeteilterberater;
+
+        public void PrintAllData()
+        {
+            Console.WriteLine("{0}.{1}.{2}, {3}, {4}", GetTag(), GetMonat(), GetJahr(), GetOrt(), GetThema());
+        }
+        /*
+        public string Ort  /// property
 		{
 			get 
 			{
@@ -38,9 +45,9 @@ namespace Task2
 				m_thema=value;
 			}
 		}
+        */
 
-
-		public Termin (int tag,int monat,int jahr) /// constructor
+		public Termin (int tag,int monat,int jahr, string ort, string thema) /// constructor
 		{
 			if ((tag<1)||(tag>31)) throw new Exception("kein gültiger Tag!");
 			if ((monat<1)||(monat>12)) throw new Exception("kein gültiger Monat!");
@@ -49,7 +56,9 @@ namespace Task2
 			m_tag = tag;
 			m_monat = monat;
 			m_jahr = jahr;
-		}
+            m_ort = ort;
+            m_thema = thema;
+        }
 	
 		public int GetTag() /// method
 		{
@@ -66,7 +75,17 @@ namespace Task2
 			return m_jahr;
 		}
 
-		public void UpdateTag(int tag) /// method
+        public string GetOrt() /// method
+		{
+            return m_ort;
+        }
+
+        public string GetThema() /// method
+		{
+            return m_thema;
+        }
+
+        public void UpdateTag(int tag) /// method
 		{
 			if ((tag<1)||(tag>31)) throw new Exception("kein gültiger Tag!");
 			m_tag = tag;
@@ -84,6 +103,11 @@ namespace Task2
 			m_jahr = jahr;
 		}
 
-	}
+        public void BeraterZuTerminEintragen(int Beraternummer) /// method
+		{
+            m_zugeteilterberater = Beraternummer;
+        }
+
+    }
 }
 

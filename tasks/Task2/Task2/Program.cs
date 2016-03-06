@@ -1,4 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json;
+
 
 namespace Task2
 {
@@ -8,18 +10,25 @@ namespace Task2
 		{
 			try
 			{
+                var termine = new Termin[] { };
 
-                var termine = new Termin[]
+                Console.WriteLine("Programmstart. Haben Sie schon ein Serialisierungsfile angelegt? Falls sie hier nein angeben werden Standarddaten geladen. (y/n) ");
+                var select = Console.ReadLine();
+                if (select == "n" || select == "N")
                 {
-                    new Termin(12, 10, 2016, "Salzburg","Projekt Zentaurus"),
-                    new Termin(14, 10, 2016, "Wien", "Projekt Alpha"),
-                    new Termin(15, 10, 2016, "Linz", "Projekt Sunshine"),
-                    new Termin(18, 10, 2016, "Salzburg", "Projekt Zentaurus"),
-                    new Termin(03, 11, 2016, "Wien", "Projekt Alpha"),
-                    new Termin(04, 11, 2016, "Wels", "Projekt Mozart"),
-                    new Termin(08, 11, 2016, "Innsbruck", "Projekt Epsilon"),
-                    new Termin(12, 12, 2016, "Salzburg", "Projekt Zentaurus"),
-                };
+                    termine = new Termin[]
+                    {
+                        new Termin(12, 10, 2016, "Salzburg","Projekt Zentaurus"),
+                        new Termin(14, 10, 2016, "Wien", "Projekt Alpha"),
+                        new Termin(15, 10, 2016, "Linz", "Projekt Sunshine"),
+                        new Termin(18, 10, 2016, "Salzburg", "Projekt Zentaurus"),
+                        new Termin(03, 11, 2016, "Wien", "Projekt Alpha"),
+                        new Termin(04, 11, 2016, "Wels", "Projekt Mozart"),
+                        new Termin(08, 11, 2016, "Innsbruck", "Projekt Epsilon"),
+                        new Termin(12, 12, 2016, "Salzburg", "Projekt Zentaurus"),
+                    };    
+                }
+
 
                 var consultants = new Consultant[]
                 {
@@ -31,11 +40,11 @@ namespace Task2
                 string input; // variable für Switch
                 int a = 0;
 
-                while (a != 4)
+                while (a != 5)
                 {
 
                     Console.Clear();
-                    Console.WriteLine("Please select:" + Environment.NewLine + "1 - show all appointments" + Environment.NewLine + "2 - show all consultants" + Environment.NewLine + "3 - add consultant to appointment" + Environment.NewLine + "4 - exit program ");
+                    Console.WriteLine("Please select:" + Environment.NewLine + "1 - show all appointments" + Environment.NewLine + "2 - show all consultants" + Environment.NewLine + "3 - serialize+save" + Environment.NewLine + "4 - load+deserialize" + Environment.NewLine + "5 - exit program ");
                     input = Console.ReadLine();
                     a = Int32.Parse(input);
                     Console.WriteLine(Environment.NewLine);
@@ -59,11 +68,16 @@ namespace Task2
                             Console.ReadKey();
                             break;
                         case 3:
-                            Console.WriteLine("function not yet implemented");
+                            Serialize.Run(termine);
                             Console.WriteLine("Press enter to continue!");
                             Console.ReadKey();
                             break;
                         case 4:
+                            termine=Deserialize.Deserialisierung();
+                            Console.WriteLine("Press enter to continue!");
+                            Console.ReadKey();
+                            break;
+                        case 5:
                             Environment.Exit(0);
                             break;
                         default:

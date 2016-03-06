@@ -27,9 +27,9 @@ namespace lesson4
             };
 
             var currency = Currency.EUR;
-            foreach (var x in items)
+           // foreach (var x in items)
             {
-                Console.WriteLine($"{x.Description.Truncate(50),-50} {x.Price.ConvertTo(currency).Amount,8:0.00} {currency}");
+           //     Console.WriteLine($"{x.Description.Truncate(50),-50} {x.Price.ConvertTo(currency).Amount,8:0.00} {currency}");
             }
 
             SerializationExample.Run(items);

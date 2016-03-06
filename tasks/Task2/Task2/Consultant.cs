@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Task2
 {
@@ -23,6 +24,7 @@ namespace Task2
 
         }
         */
+        [JsonConstructor]
         public Consultant(string Vorname, string Nachname, DateTime Geburtsdatum, string Mail, string Telefon, int Beraternummer)
             : base(Vorname, Nachname, Geburtsdatum, Mail, Telefon)
         {

@@ -3,12 +3,14 @@
 /// </summary>
 
 using System;
+using Newtonsoft.Json;
 
 namespace Task2
 {	
 	public class Termin : IAllData
 	{
-		private int m_tag; /// private fields
+        /* ausgeschaltet, da über get,set property gearbeitet werden muss für Json
+        private int m_tag; /// private fields
 		private int m_monat;
 		private int m_jahr;
 
@@ -16,6 +18,7 @@ namespace Task2
 		private string m_ort;
 
         private int m_zugeteilterberater;
+        */
 
         public void PrintAllData()
         {
@@ -47,67 +50,76 @@ namespace Task2
 		}
         */
 
-		public Termin (int tag,int monat,int jahr, string ort, string thema) /// constructor
+        [JsonConstructor]
+        public Termin (int tag,int monat,int jahr, string ort, string thema) /// constructor
 		{
 			if ((tag<1)||(tag>31)) throw new Exception("kein gültiger Tag!");
 			if ((monat<1)||(monat>12)) throw new Exception("kein gültiger Monat!");
 			if (jahr<2016) throw new Exception("kein Datum nach 2015 eingegeben!");
 
-			m_tag = tag;
-			m_monat = monat;
-			m_jahr = jahr;
-            m_ort = ort;
-            m_thema = thema;
+			Tag = tag;
+			Monat = monat;
+			Jahr = jahr;
+            Ort = ort;
+            Thema = thema;
         }
-	
-		public int GetTag() /// method
+
+        // auto-implemented Properties für Json
+        public int Tag { get; set; }
+        public int Monat { get; set; }
+        public int Jahr { get; set; }
+        public string Ort { get; set; }
+        public string Thema { get; set; }
+
+
+        public int GetTag() /// method
 		{
-			return m_tag;
+			return Tag;
 		}
 
 		public int GetMonat() /// method
 		{
-			return m_monat;
+			return Monat;
 		}
 
 		public int GetJahr() /// Methode
 		{
-			return m_jahr;
+			return Jahr;
 		}
 
         public string GetOrt() /// method
 		{
-            return m_ort;
+            return Ort;
         }
 
         public string GetThema() /// method
 		{
-            return m_thema;
+            return Thema;
         }
 
         public void UpdateTag(int tag) /// method
 		{
 			if ((tag<1)||(tag>31)) throw new Exception("kein gültiger Tag!");
-			m_tag = tag;
+			Tag = tag;
 		}
 
 		public void UpdateMonat(int monat) /// method
 		{
 			if ((monat<1)||(monat>12)) throw new Exception("kein gültiger Monat!");
-			m_monat = monat;
+			Monat = monat;
 		}
 
 		public void UpdateJahr(int jahr) /// Methode
 		{
 			if (jahr<2016) throw new Exception("kein Datum nach 2015 eingegeben!");
-			m_jahr = jahr;
+			Jahr = jahr;
 		}
 
-        public void BeraterZuTerminEintragen(int Beraternummer) /// method
+        /* public void BeraterZuTerminEintragen(int Beraternummer) /// method
 		{
             m_zugeteilterberater = Beraternummer;
         }
-
+        */
     }
 }
 

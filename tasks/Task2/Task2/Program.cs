@@ -10,41 +10,57 @@ namespace Task2
 		{
 			try
 			{
+                /// Anlegen von Instanzen der Klassen
                 var termine = new Termin[] { };
+                var consultants = new Consultant[] { };
+                var clients = new Client[] { };
 
-                Console.WriteLine("Programmstart. Haben Sie schon ein Serialisierungsfile angelegt? Falls sie hier nein angeben werden Standarddaten geladen. (y/n) ");
+                /// Abfrage, ob Daten aus einem File geladen werden sollen, oder Standarddaten
+                Console.WriteLine("Programmstart. Wollen Sie Standarddaten laden. (y/n) ");
                 var select = Console.ReadLine();
-                if (select == "n" || select == "N")
+                if (select == "y" || select == "Y")
                 {
                     termine = new Termin[]
-                    {
-                        new Termin(12, 10, 2016, "Salzburg","Projekt Zentaurus"),
-                        new Termin(14, 10, 2016, "Wien", "Projekt Alpha"),
-                        new Termin(15, 10, 2016, "Linz", "Projekt Sunshine"),
-                        new Termin(18, 10, 2016, "Salzburg", "Projekt Zentaurus"),
-                        new Termin(03, 11, 2016, "Wien", "Projekt Alpha"),
-                        new Termin(04, 11, 2016, "Wels", "Projekt Mozart"),
-                        new Termin(08, 11, 2016, "Innsbruck", "Projekt Epsilon"),
-                        new Termin(12, 12, 2016, "Salzburg", "Projekt Zentaurus"),
-                    };    
+                        {
+                        new Termin(12, 10, 2016, "Salzburg","Projekt Zentaurus",1001),
+                        new Termin(14, 10, 2016, "Wien", "Projekt Alpha",1002),
+                        new Termin(15, 10, 2016, "Linz", "Projekt Sunshine",1002),
+                        new Termin(18, 10, 2016, "Salzburg", "Projekt Zentaurus",1001),
+                        new Termin(03, 11, 2016, "Wien", "Projekt Alpha",1002),
+                        new Termin(04, 11, 2016, "Wels", "Projekt Mozart",1003),
+                        new Termin(08, 11, 2016, "Innsbruck", "Projekt Epsilon",1003),
+                        new Termin(12, 12, 2016, "Salzburg", "Projekt Zentaurus",1001),
+                        };
+                    consultants = new Consultant[]
+                        {
+                        new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032", "Horsti", "Initial01", 1000),
+                        new Consultant("Max", "Hendel", new DateTime(1975, 10, 14), "max.hendel@conmain.at", "+43 664 4376542", "Maxi", "Initial01", 1001),
+                        new Consultant("Verena", "Schmid", new DateTime(1983, 09, 11), "verena.schmid@experteer.at", "+43 664 5435341", "Verena.S", "Initial01", 1002),
+                        };
+                    clients = new Client[]
+                        {
+                        new Client("Karl", "Mueller", new DateTime(1981, 03, 15), "karl.m@gmx.at", "+43 664 2345032", "Karl81", "Initial01",81000),
+                        new Client("Iris", "Becker", new DateTime(1974, 12, 14), "i.becker@chello.at", "+43 664 4323252", "Iris74", "Initial01", 81001),
+                        };
+
                 }
 
-
-                var consultants = new Consultant[]
-                {
-                    new Consultant("Horst","Maier",new DateTime(1980,04,15),"horst.maier@conpro.at","+43 664 2380032", 0001),
-                    new Consultant("Max","Hendel",new DateTime(1975,10,14),"max.hendel@conmain.at","+43 664 4376542", 0002),
-                    new Consultant("Verena","Schmid",new DateTime(1983,09,11),"verena.schmid@experteer.at","+43 664 5435341", 0003),
-                };
 
                 string input; // variable für Switch
                 int a = 0;
 
-                while (a != 5)
+                while (a != 6)
                 {
 
                     Console.Clear();
-                    Console.WriteLine("Please select:" + Environment.NewLine + "1 - show all appointments" + Environment.NewLine + "2 - show all consultants" + Environment.NewLine + "3 - serialize+save" + Environment.NewLine + "4 - load+deserialize" + Environment.NewLine + "5 - exit program ");
+                    Console.WriteLine(
+                        "Please select:" + Environment.NewLine + 
+                        "1 - show all appointments" + Environment.NewLine + 
+                        "2 - show all consultants" + Environment.NewLine +
+                        "3 - show all clients" + Environment.NewLine +
+                        "4 - serialize+save" + Environment.NewLine + 
+                        "5 - load+deserialize" + Environment.NewLine + 
+                        "6 - exit program ");
                     input = Console.ReadLine();
                     a = Int32.Parse(input);
                     Console.WriteLine(Environment.NewLine);
@@ -68,16 +84,32 @@ namespace Task2
                             Console.ReadKey();
                             break;
                         case 3:
-                            Serialize.Run(termine);
+                            foreach (var x in clients)
+                            {
+                                x.PrintAllData();
+                            }
                             Console.WriteLine("Press enter to continue!");
                             Console.ReadKey();
                             break;
                         case 4:
-                            termine=Deserialize.Deserialisierung();
+                            Serialize.RunT(termine);
+                            //Console.ReadKey();
+                            //Serialize.RunCo(consultants);
+                            //Console.ReadKey();
+                            //Serialize.RunCl(clients);
                             Console.WriteLine("Press enter to continue!");
                             Console.ReadKey();
                             break;
                         case 5:
+                            termine = Deserialize.DeserialisierungT();
+                            Console.ReadKey();
+                            //consultants = Deserialize.DeserialisierungCo();
+                            //Console.ReadKey();
+                            //clients = Deserialize.DeserialisierungCl();
+                            //Console.WriteLine("Press enter to continue!");
+                            Console.ReadKey();
+                            break;
+                        case 6:
                             Environment.Exit(0);
                             break;
                         default:
@@ -86,22 +118,6 @@ namespace Task2
                     }
                 }
 
-              
-
-              
-
-
-                /*
-                mytermin.Ort = "Salzburg";
-                mytermin.Thema = "Projekt Zentaurus";
-                Console.WriteLine ("Am {0}.{1}.{2} findet in {3} der Termin {4} statt.", mytermin.GetTag(),mytermin.GetMonat(),mytermin.GetJahr(), mytermin.Ort,mytermin.Thema);
-
-				mytermin.UpdateTag(14);
-				mytermin.UpdateMonat(11);
-				mytermin.UpdateJahr(2016);
-			
-				Console.WriteLine ("Aktualisiert: Am {0}.{1}.{2} findet in {3} der Termin {4} statt.", mytermin.GetTag(),mytermin.GetMonat(),mytermin.GetJahr(), mytermin.Ort,mytermin.Thema);
-			    */
             }
 			catch (Exception e)
 			{

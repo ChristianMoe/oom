@@ -5,7 +5,7 @@ namespace Task2
     public interface IAllData
     {
         /// <summary>
-        /// Prints all Data
+        /// Interface Method Prints all Data
         /// </summary>
         void PrintAllData();
 

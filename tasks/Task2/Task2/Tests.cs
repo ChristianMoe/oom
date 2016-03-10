@@ -17,7 +17,7 @@ namespace Task2
         {
             Assert.Catch(() =>
             {
-                var termin = new Termin(-2, 10, 2016, "Salzburg", "Projekt Zentaurus");
+                var termin = new Termin(-2, 10, 2016, "Salzburg", "Projekt Zentaurus",1001);
             });
         }
         [Test]
@@ -26,7 +26,7 @@ namespace Task2
         {
             Assert.Catch(() =>
             {
-                var termin = new Termin(10, -3, 2016, "Salzburg", "Projekt Zentaurus");
+                var termin = new Termin(10, -3, 2016, "Salzburg", "Projekt Zentaurus",1001);
             });
         }
         [Test]
@@ -35,21 +35,21 @@ namespace Task2
         {
             Assert.Catch(() =>
             {
-                var termin = new Termin(10, 10, 2015, "Salzburg", "Projekt Zentaurus");
+                var termin = new Termin(10, 10, 2015, "Salzburg", "Projekt Zentaurus",1001);
             });
         }
         [Test]
 
         public void Test4_RückgabewertThemaBeiTermin()
         {
-            var termin = new Termin(10, 10, 2016, "Salzburg", "Projekt Zentaurus");
+            var termin = new Termin(10, 10, 2016, "Salzburg", "Projekt Zentaurus",1001);
             Assert.IsTrue(String.Equals(termin.GetThema(),"Projekt Zentaurus", StringComparison.Ordinal));
         }
         [Test]
 
         public void Test5_RückgabewertConsultantName()
         {
-            var con1 = new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032", 0001);
+            var con1 = new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032","Horsti", "Initial01", 0001);
             Assert.IsTrue(String.Equals(con1.GetVorname()+con1.GetNachname(), "HorstMaier", StringComparison.Ordinal));
 
         }
@@ -57,7 +57,7 @@ namespace Task2
 
         public void Test6_RückgabewertGeburtsdatum()
         {
-            var con1 = new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032", 0001);
+            var con1 = new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032", "Horsti", "Initial01", 0001);
             var birthdate = new DateTime(1980, 04, 15);
             Assert.IsTrue(con1.GetGeburtsdatum() == birthdate);
         }
@@ -67,14 +67,14 @@ namespace Task2
         {
             Assert.Catch(() =>
             {
-                var con1 = new Consultant("Horst", "Maier", new DateTime(1980, -4, 15), "horst.maier@conpro.at", "+43 664 2380032", 0001);
+                var con1 = new Consultant("Horst", "Maier", new DateTime(1980, -4, 15), "horst.maier@conpro.at", "+43 664 2380032", "Horsti", "Initial01", 0001);
             });
         }
         [Test]
 
         public void Test8_KeinOrtBeiTermin()
         {
-            var termin = new Termin(1,1,2016,null,null);
+            var termin = new Termin(1,1,2016,null,null,1001);
             Assert.IsTrue(String.Equals(termin.GetOrt(), null, StringComparison.Ordinal));
         }
 

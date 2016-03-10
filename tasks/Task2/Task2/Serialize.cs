@@ -8,25 +8,47 @@ namespace Task2
 {
     class Serialize
     {
-        public static void Run(Termin[] items)
+        public static void RunT(Termin[] items)
         {
             var settings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
             Console.WriteLine(JsonConvert.SerializeObject(items, settings));
 
-            // Abfrage ob gespeichert werden soll.
-            Console.WriteLine("Serialisierung durchgeführt. Wollen Sie speichern? (y/n) ");
-            var select = Console.ReadLine();
-            if (select=="y"|| select=="Y")
-            {
+
                 var text = JsonConvert.SerializeObject(items, settings);
-                var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                Console.WriteLine("Bitte Filename eingeben: ");
-                var fn = Console.ReadLine();
+                var desktop = Environment.CurrentDirectory;
+                var fn = "termine.json";
                 var filename = Path.Combine(desktop, fn);
                 File.WriteAllText(filename, text);
-            }
+                Console.WriteLine("Consultants in {0} gespeichert!", filename);
             
+        }
+        public static void RunCl(Client[] items)
+        {
+            var settings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
+            Console.WriteLine(JsonConvert.SerializeObject(items, settings));
 
+
+                var text = JsonConvert.SerializeObject(items, settings);
+                var desktop = Environment.CurrentDirectory;
+                var fn = "clients.json";
+                var filename = Path.Combine(desktop, fn);
+                File.WriteAllText(filename, text);
+                Console.WriteLine("Consultants in {0} gespeichert!", filename);
+            
+        }
+        public static void RunCo(Consultant[] items)
+        {
+            var settings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
+            Console.WriteLine(JsonConvert.SerializeObject(items, settings));
+
+   
+                var text = JsonConvert.SerializeObject(items, settings);
+                var desktop = Environment.CurrentDirectory;
+                var fn = "consultants.json";
+                var filename = Path.Combine(desktop, fn);
+                File.WriteAllText(filename, text);
+                Console.WriteLine("Consultants in {0} gespeichert!", filename);
+            
         }
     }
 }

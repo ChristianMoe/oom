@@ -55,9 +55,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
     <Compile Include="Consultant.cs" />
     <Compile Include="Deserialize.cs" />
-    <Compile Include="Filename.cs" />
     <Compile Include="IAllData.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Program.cs" />

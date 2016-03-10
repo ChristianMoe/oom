@@ -7,17 +7,15 @@ using Newtonsoft.Json;
 
 namespace Task2
 {
-    class Consultant:Person
+    class Client:Person
     {
-
         /// <summary>
-        /// Auto Properties for Consultant
+        /// Auto-Property Klientennummer
         /// </summary>
-        public int Beraternummer { get; set; } 
-        public decimal Stundensatz { get; set; }
+        public int m_clientnumber { get; set; }
 
         /// <summary>
-        /// Constructor for Consultant
+        /// Constructor for Class Client
         /// </summary>
         /// <param name="Vorname"></param>
         /// <param name="Nachname"></param>
@@ -26,21 +24,22 @@ namespace Task2
         /// <param name="Telefon"></param>
         /// <param name="Username"></param>
         /// <param name="Password"></param>
-        /// <param name="Beraternummer"></param>
+        /// <param name="ClientNr"></param>
+
         [JsonConstructor]
-        public Consultant(string Vorname, string Nachname, DateTime Geburtsdatum, string Mail, string Telefon, string Username, string Password, int Beraternummer)
+        public Client(string Vorname, string Nachname, DateTime Geburtsdatum, string Mail, string Telefon,string Username, string Password, int ClientNr)
             : base(Vorname, Nachname, Geburtsdatum, Mail, Telefon, Username, Password)
         {
-            this.Beraternummer = Beraternummer;
+            m_clientnumber = ClientNr;
         }
+
 
         /// <summary>
         /// Implementation of Interface Function Print all Data
         /// </summary>
         public override void PrintAllData()
         {
-            Console.WriteLine("{0}: {1} {2}, {3}, {4}, {5}, {6}, {7}", Beraternummer, GetVorname(), GetNachname(), GetGeburtsdatum(), GetMail(), GetTelefon(), GetUsername(), Stundensatz);
+            Console.WriteLine("{0}: {1} {2}, {3}, {4}, {5}, {6}", m_clientnumber, GetVorname(), GetNachname(), GetGeburtsdatum(), GetMail(), GetTelefon(),GetUsername());
         }
-
     }
 }

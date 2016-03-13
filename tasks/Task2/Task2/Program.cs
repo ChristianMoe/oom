@@ -49,7 +49,7 @@ namespace Task2
                 string input; // variable für Switch
                 int a = 0;
 
-                while (a != 6)
+                while (a != 7)
                 {
 
                     Console.Clear();
@@ -59,8 +59,9 @@ namespace Task2
                         "2 - show all consultants" + Environment.NewLine +
                         "3 - show all clients" + Environment.NewLine +
                         "4 - serialize+save" + Environment.NewLine + 
-                        "5 - load+deserialize" + Environment.NewLine + 
-                        "6 - exit program ");
+                        "5 - load+deserialize" + Environment.NewLine +
+                        "6 - Qualification zu Consultant hinzufuegen" + Environment.NewLine +
+                        "7 - exit program ");
                     input = Console.ReadLine();
                     a = Int32.Parse(input);
                     Console.WriteLine(Environment.NewLine);
@@ -93,23 +94,41 @@ namespace Task2
                             break;
                         case 4:
                             Serialize.RunT(termine);
-                            //Console.ReadKey();
-                            //Serialize.RunCo(consultants);
-                            //Console.ReadKey();
-                            //Serialize.RunCl(clients);
+                            Console.ReadKey();
+                            Serialize.RunCo(consultants);
+                            Console.ReadKey();
+                            Serialize.RunCl(clients);
                             Console.WriteLine("Press enter to continue!");
                             Console.ReadKey();
                             break;
                         case 5:
                             termine = Deserialize.DeserialisierungT();
                             Console.ReadKey();
-                            //consultants = Deserialize.DeserialisierungCo();
-                            //Console.ReadKey();
-                            //clients = Deserialize.DeserialisierungCl();
-                            //Console.WriteLine("Press enter to continue!");
+                            consultants = Deserialize.DeserialisierungCo();
+                            Console.ReadKey();
+                            clients = Deserialize.DeserialisierungCl();
+                            Console.WriteLine("Press enter to continue!");
                             Console.ReadKey();
                             break;
                         case 6:
+                            foreach (var x in consultants)
+                            {
+                                x.PrintAllData();
+                            }
+                            Console.WriteLine("Beraternummer eingeben: ");
+                            select = Console.ReadLine();
+                            a = Int32.Parse(select);
+                            foreach (var x in consultants)
+                            {
+                                if (x.Beraternummer == a)
+                                {
+                                    Console.WriteLine("Welche Qualifikation?: ");
+                                    var quali = Console.ReadLine();
+                                    x.AddQualification(quali);
+                                }
+                            }
+                            break;
+                        case 7:
                             Environment.Exit(0);
                             break;
                         default:

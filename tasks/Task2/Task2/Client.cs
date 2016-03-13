@@ -12,7 +12,7 @@ namespace Task2
         /// <summary>
         /// Auto-Property Klientennummer
         /// </summary>
-        public int m_clientnumber { get; set; }
+        public int Clientnumber { get; set; }
 
         /// <summary>
         /// Constructor for Class Client
@@ -30,7 +30,13 @@ namespace Task2
         public Client(string Vorname, string Nachname, DateTime Geburtsdatum, string Mail, string Telefon,string Username, string Password, int ClientNr)
             : base(Vorname, Nachname, Geburtsdatum, Mail, Telefon, Username, Password)
         {
-            m_clientnumber = ClientNr;
+            this.Vorname = Vorname;
+            this.Nachname = Nachname;
+            this.Geburtstag = Geburtsdatum;
+            this.Mailadresse = Mail;
+            this.Telefonnummer = Telefon;
+            this.Username = Username;
+            this.Clientnumber = ClientNr;
         }
 
 
@@ -39,7 +45,7 @@ namespace Task2
         /// </summary>
         public override void PrintAllData()
         {
-            Console.WriteLine("{0}: {1} {2}, {3}, {4}, {5}, {6}", m_clientnumber, GetVorname(), GetNachname(), GetGeburtsdatum(), GetMail(), GetTelefon(),GetUsername());
+            Console.WriteLine("{0}: {1} {2}, {3}, {4}, {5}, {6}", Clientnumber, Vorname, Nachname, Geburtstag, Mailadresse, Telefonnummer,Username);
         }
     }
 }

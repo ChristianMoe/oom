@@ -50,7 +50,7 @@ namespace Task2
         public void Test5_RückgabewertConsultantName()
         {
             var con1 = new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032","Horsti", "Initial01", 0001);
-            Assert.IsTrue(String.Equals(con1.GetVorname()+con1.GetNachname(), "HorstMaier", StringComparison.Ordinal));
+            Assert.IsTrue(String.Equals(con1.Vorname+con1.Nachname, "HorstMaier", StringComparison.Ordinal));
 
         }
         [Test]
@@ -59,7 +59,7 @@ namespace Task2
         {
             var con1 = new Consultant("Horst", "Maier", new DateTime(1980, 04, 15), "horst.maier@conpro.at", "+43 664 2380032", "Horsti", "Initial01", 0001);
             var birthdate = new DateTime(1980, 04, 15);
-            Assert.IsTrue(con1.GetGeburtsdatum() == birthdate);
+            Assert.IsTrue(con1.Geburtstag == birthdate);
         }
         [Test]
         

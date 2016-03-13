@@ -12,14 +12,14 @@ namespace Task2
     {
 
         /// <summary>
-        /// All persons have the following information fields
+        /// All persons autoproperties
         /// </summary>
-        private string m_vorname;
-        private string m_nachname; 
-        private DateTime m_geburtsdatum;
-        private string m_mailadresse;
-        private string m_telefonnummer;
-        private string m_username;
+        public string Vorname { get; set; }
+        public string Nachname { get; set; }
+        public DateTime Geburtstag { get; set; }
+        public string Mailadresse { get; set; }
+        public string Telefonnummer { get; set; }
+        public string Username { get; set; }
         private string m_password;
 
         /// <summary>
@@ -32,18 +32,7 @@ namespace Task2
         /// <param name="Telefon"></param>
         /// <param name="Username"></param>
         /// <param name="Password"></param>
-        [JsonConstructor]
-        public Person(string Vorname, string Nachname, DateTime Geburtsdatum, string Mail, string Telefon, string Username, string Password)
-        {
-            m_vorname = Vorname;
-            m_nachname = Nachname;
-            m_geburtsdatum = Geburtsdatum;
-            m_mailadresse = Mail;
-            m_telefonnummer = Telefon;
-            m_username = Username;
-            m_password = Password;
-
-        }
+        public Person(string Vorname, string Nachname, DateTime Geburtsdatum, string Mail, string Telefon, string Username, string Password) {}
 
         /// <summary>
         /// Virtual Method implementation for class Person using the Interface
@@ -51,18 +40,7 @@ namespace Task2
         public virtual void PrintAllData() { }
 
         /// <summary>
-        /// Methods for Valuereturn
-        /// </summary>
-        /// <returns>values of specific fields</returns>
-        public string GetVorname() { return m_vorname;}
-        public string GetNachname() { return m_nachname; }
-        public DateTime GetGeburtsdatum() { return m_geburtsdatum; }
-        public string GetMail() { return m_mailadresse; }
-        public string GetTelefon() { return m_telefonnummer; }
-        public string GetUsername() { return m_username; }
-
-        /// <summary>
-        /// Methos to change password
+        /// Method to change password
         /// </summary>
         /// <returns>1 on success, 0 on failure</returns>
         public int ChangePassword ()

@@ -26,7 +26,7 @@ namespace Task2
         public bool HasQualification(string x) { return Qualifications.Contains(x); }
         public void RemoveQualification(string x) { Qualifications.Remove(x); }
 
-        public void PrintListValues ()
+        public void PrintQualificationValues ()
         { 
             foreach (string quali in Qualifications)
 	        Console.Write(", {0}",quali);
@@ -63,7 +63,7 @@ namespace Task2
         public override void PrintAllData()
         {
             Console.Write("{0}: {1} {2}, {3}, {4}, {5}, {6}, {7}", Beraternummer, Vorname, Nachname, Geburtstag, Mailadresse, Telefonnummer, Username, Stundensatz);
-            PrintListValues();
+            PrintQualificationValues();
             Console.WriteLine(Environment.NewLine);
         }
 
